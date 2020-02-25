@@ -1,0 +1,39 @@
+<br><br><br>
+<div class="container">
+    <form #prescription_form="ngForm" class="form-inline" (ngSubmit)="onSubmit(prescription_form.value)">
+      <div class="form-group">
+        <label for="medicine">Medicine Name:</label>
+        <input type="text" class="form-control" id="medicine" name="medicine" placeholder="Enter Medicine" #searchMedicine ngModel>
+
+      </div>
+      <div class="form-group">
+        <label for="dose">Dose:</label>
+        <input type="text" class="form-control" id="dose" name="dose" #definedose placeholder="Enter Dose" ngModel>
+        <input (click)="clearInputValues(searchMedicine,definedose)" type="submit" value=" + " class="btn btn-default">
+      </div>
+      <br>
+    </form>
+    
+  </div>
+
+  <div>    
+    <table id="prescription_list">
+        <tr>
+            <th>Medicine</th>
+            <th>Dose</th>
+            <th>Routine</th>
+            <th>Operation</th>
+        </tr>
+        <tr *ngFor="let item of formdata">
+            <th>{{ item.medicine_name }}</th>
+            <th>{{ item.dose }}</th>
+            <th>random</th>
+            <th><button (click)="onDelete(item)">Delete</button></th>
+        </tr>
+        
+        
+    </table>
+    <div class="btn_class">
+      <input type="button" (click)="generatePDF()" value="Generate Prescription" class="btn btn-primary">
+    </div>
+</div>
